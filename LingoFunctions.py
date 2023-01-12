@@ -63,6 +63,7 @@ def wordinletters(wordinput:str):
 def checkwords(word:str,wordinput:str,wordlist:list,wordtoguesslist:list):
     checkwordlist = []
     checkworddict = {}
+    wordtoguesslistcopy = wordtoguesslist.copy()
     listcheck = 0
     if word == wordinput:
         checkworddict["geraden"]=True
@@ -71,11 +72,12 @@ def checkwords(word:str,wordinput:str,wordlist:list,wordtoguesslist:list):
     for i in range(len(wordlist)):
         if wordlist[i] == wordtoguesslist[i] and listcheck == 0	:
             checkwordlist.append(1)
+            wordtoguesslistcopy.remove(wordlist[i])
             listcheck = 1
-        elif wordlist[i] in wordtoguesslist and listcheck == 0:
+        elif wordlist[i] in wordtoguesslist and listcheck == 0 and wordlist[i]  in wordtoguesslistcopy:
             checkwordlist.append(2)
             listcheck = 1
-        elif wordlist[i] not in wordtoguesslist and listcheck == 0:
+        elif wordlist[i] not in wordtoguesslistcopy and listcheck == 0:
             checkwordlist.append(3)
             listcheck = 1
         listcheck=0
@@ -89,7 +91,7 @@ def getletterswithcolor(checkworddict:dict,wordlist:list):
     for i in checkworddict["checkwordlist"]:
         if i == NUMMERGOED:
             listtoprint.append(colored(wordlist[wordnumber],KLEURGOED))
-        elif i == NUMMERHALF and wordlist[wordnumber] not in wordlist:
+        elif i == NUMMERHALF:
             listtoprint.append(colored(wordlist[wordnumber],KLEURHALF))
         else:
             listtoprint.append(colored(wordlist[wordnumber],KLEURSLECHT))

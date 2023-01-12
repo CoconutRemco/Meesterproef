@@ -1,13 +1,18 @@
+## Imports
 from LingoFunctions import *
+## Variables
 repeat = True
 repeat2 = True
+## Main loop for the program
 while repeat == True:
+## Variables
     wordstoprint = []
     wordtoguess = GetWord()
     pogingen = 0
     geraden = False
     showintro()
     showrules()
+## Loop for the game
     while pogingen <= MAX_POGINGEN and geraden == False:
         print(wordtoguess)
         wordlength = GetWordLength(wordtoguess)
