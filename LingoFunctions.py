@@ -63,25 +63,28 @@ def wordinletters(wordinput:str):
 def checkwords(word:str,wordinput:str,wordlist:list,wordtoguesslist:list):
     checkwordlist = []
     checkworddict = {}
-    wordtoguesslistcopy = wordtoguesslist.copy()
-    listcheck = 0
+    wordtoguesslist2 = wordtoguesslist.copy()
     if word == wordinput:
         checkworddict["geraden"]=True
     else:
         checkworddict["geraden"]=False
-    for i in range(len(wordlist)):
-        if wordlist[i] == wordtoguesslist[i] and listcheck == 0	:
+    for i in range(len(word)):
+        if wordlist[i]==wordtoguesslist[i]:
             checkwordlist.append(1)
-            wordtoguesslistcopy.remove(wordlist[i])
-            listcheck = 1
-        elif wordlist[i] in wordtoguesslist and listcheck == 0 and wordlist[i]  in wordtoguesslistcopy:
-            checkwordlist.append(2)
-            listcheck = 1
-        elif wordlist[i] not in wordtoguesslistcopy and listcheck == 0:
-            checkwordlist.append(3)
-            listcheck = 1
-        listcheck=0
+            wordtoguesslist2[i] = "+"
+        else:
+            checkwordlist.append("+")
+    for i in range(len(word)):
+        if wordlist[i] in wordtoguesslist2 and checkwordlist[i] == "+":
+            wordtoguesslist2[wordtoguesslist2.index(wordlist[i])] = "+"
+            checkwordlist[i] = 2
+        else:
+            wordtoguesslist2[i] = "+"
+    for i in range(len(word)):
+        if wordlist[i] not in wordtoguesslist2 and checkwordlist[i] == "+":
+            checkwordlist[i] = 3
     checkworddict["checkwordlist"]=checkwordlist
+    print(checkworddict)
     return checkworddict
 ## Puts the letters with the correct color in an string
 def getletterswithcolor(checkworddict:dict,wordlist:list):
@@ -99,6 +102,7 @@ def getletterswithcolor(checkworddict:dict,wordlist:list):
     for j in range(len(listtoprint)):
         totaltext = totaltext + listtoprint[j]
     return totaltext
+    
 ## Prints the lingo board
 def printlingoboard(wordstoprint:list,wordlenght:int):
     if len(wordstoprint) <= 5:
