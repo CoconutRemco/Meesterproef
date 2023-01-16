@@ -2,7 +2,6 @@
 from LingoFunctions import *
 ## Variables
 repeat = True
-repeat2 = True
 ## Main loop for the program
 while repeat == True:
 ## Variables
@@ -16,7 +15,7 @@ while repeat == True:
     while pogingen <= MAX_POGINGEN and geraden == False:
         print(wordtoguess)
         wordlength = GetWordLength(wordtoguess)
-        wordtoguesslist = wordtoguessinletters(wordtoguess)
+        wordtoguesslist = wordinletters(wordtoguess)
         printfirtslingoletter(wordtoguesslist)
         wordchecked = wordcheck(wordlength)
         wordlist = wordinletters(wordchecked)

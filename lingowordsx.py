@@ -1,0 +1,1 @@
+words=["mus","bus","banaan","appel"]

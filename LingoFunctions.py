@@ -47,16 +47,10 @@ def wordcheck(lenword:int):
             return wordinput
         else:
             repeat = True
-## Returns the word to guess in letters
-def wordtoguessinletters(wordtoguess:str):
+## Returns the words in letters
+def wordinletters(wordtoguess:str):
     wordlist = []
     for letter in wordtoguess:
-        wordlist.append(letter)
-    return wordlist
-## Returns the inputted word in letters
-def wordinletters(wordinput:str):
-    wordlist = []
-    for letter in wordinput:
         wordlist.append(letter)
     return wordlist
 ## Gives the words a number bound to a color
@@ -84,7 +78,6 @@ def checkwords(word:str,wordinput:str,wordlist:list,wordtoguesslist:list):
         if wordlist[i] not in wordtoguesslist2 and checkwordlist[i] == "+":
             checkwordlist[i] = 3
     checkworddict["checkwordlist"]=checkwordlist
-    print(checkworddict)
     return checkworddict
 ## Puts the letters with the correct color in an string
 def getletterswithcolor(checkworddict:dict,wordlist:list):
@@ -105,10 +98,10 @@ def getletterswithcolor(checkworddict:dict,wordlist:list):
     
 ## Prints the lingo board
 def printlingoboard(wordstoprint:list,wordlenght:int):
-    if len(wordstoprint) <= 5:
+    if len(wordstoprint) <= MAX_POGINGEN:
         for i in range(len(wordstoprint)):
             print(wordstoprint[i])
-        for i in range(5-len(wordstoprint)):
+        for i in range(MAX_POGINGEN-len(wordstoprint)):
             print("*"*wordlenght)
 
 ## Asks the user to play again
